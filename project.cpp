@@ -48,30 +48,16 @@ void StudentAnalyzer::search() {
     cout << "Enter marks to search: ";
     cin >> key;
 
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
-            if (marks[j] > marks[j + 1]) {
-                swap(marks[j], marks[j + 1]);
-                swap(names[j], names[j + 1]);
-            }
+    bool found = false;
+    for (int i = 0; i < n; i++) {
+        if (marks[i] == key) {
+            cout << "Marks found for Student: " << names[i] << endl;
+            found = true;
+            break;
         }
     }
 
-    int low = 0, high = n - 1, mid, found = -1;
-    while (low <= high) {
-        mid = (low + high) / 2;
-        if (marks[mid] == key) {
-            found = mid;
-            break;
-        } else if (marks[mid] < key)
-            low = mid + 1;
-        else
-            high = mid - 1;
-    }
-
-    if (found != -1)
-        cout << "Marks found for Student: " << names[found] << endl;
-    else
+    if (!found)
         cout << "Marks not found.\n";
 }
 
